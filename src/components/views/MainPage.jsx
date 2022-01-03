@@ -9,48 +9,40 @@ import Button from "@mui/material/Button";
 import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {getAnime} from "../../store/actions/anime";
+import {getAnimeList} from "../../store/actions/anime";
+import {Link} from "react-router-dom";
 
 export default function MainPage() {
-    const anime = useSelector(state => state.anime.anime)
+    const animeList = useSelector(state => state.anime.anime)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getAnime())
-    }, []);
+        dispatch(getAnimeList())
+    }, [])
     return (
-        <main>
-            <Container sx={{py: 8}} maxWidth="md">
-                <Grid container spacing={4}>
-                    {anime.map(anime => (
-                        <Grid item key={anime.id} xs={12} sm={6} md={4}>
-                            <Card
-                                sx={{height: '100%', display: 'flex', flexDirection: 'column'}}
-                            >
-                                <CardMedia
-                                    component="img"
-                                    sx={{
-                                        pt: '56.25%',
-                                    }}
-                                    image="https://source.unsplash.com/random"
-                                    alt="random"
-                                />
-                                <CardContent sx={{flexGrow: 1}}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {anime.name_rus}
-                                    </Typography>
-                                    <Typography>
-                                        {anime.name_jap}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Button size="small">View</Button>
-                                    <Button size="small">Edit</Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
+        <Grid container spacing={4} mt={5}>
+            {animeList.map(anime => (
+                <Grid item key={anime.id} xs={12} sm={6} md={4}>
+                    <Card sx={{maxWidth: 345}}>
+                        <CardMedia
+                            component="img"
+                            height="300"
+                            image={anime.poster}
+                            alt={anime.name_rus}
+                        />
+                        <CardContent>
+                            <Typography variant="h5" component="div">
+                                {anime.name_rus}
+                            </Typography>
+                            <Typography iant="body2" color="text.secondary">
+                                {anime.description}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button component={Link} to={'anime/' + anime.slug} size="small">Подробнее</Button>
+                        </CardActions>
+                    </Card>
                 </Grid>
-            </Container>
-        </main>
+            ))}
+        </Grid>
     )
 }

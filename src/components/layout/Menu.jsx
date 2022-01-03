@@ -33,7 +33,7 @@ export default function Menu() {
                         <IconButton edge="start" color="inherit" aria-label="menu" className={classes.menuButton}>
                             <MenuIcon/>
                         </IconButton>
-                        <Typography variant="h6" className={classes.title}>Shikimori</Typography>
+                        <Typography component={Link} to="/" variant="h6" className={classes.title}>Shikimori</Typography>
                         <Box mr={3}>
                             <Button component={Link} to="/signin" color="inherit" variant="outlined">Log In</Button>
                         </Box>

@@ -2,11 +2,7 @@ import {Provider} from "react-redux";
 import store from "./store/store";
 import SignIn from "./components/accounts/SignIn";
 import SignUp from "./components/accounts/SignUp";
-import {
-    BrowserRouter,
-    Routes,
-    Route
-} from "react-router-dom"
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Album from "./components/Album";
 import * as React from "react";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
@@ -23,7 +19,7 @@ function App() {
                     <Routes>
                         <Route path="/signin" element={<SignIn/>}/>
                         <Route path="/signup" element={<SignUp/>}/>
-                        <Route path="/" element={<Album/>}/>
+                        <Route path="/*" element={<Album/>}/>
                     </Routes>
                 </BrowserRouter>
             </ThemeProvider>
