@@ -1,20 +1,20 @@
-import {GET_ANIME_BY_SLUG, GET_ANIME_LIST} from "../actions/types.js"
+import {CLEAR_CART_ANIME, GET_CART_ANIME} from "../actions/types.js"
 
 const initialState = {
-    anime: [],
+    cartAnime: null
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case GET_ANIME_LIST:
+        case GET_CART_ANIME:
             return {
                 ...state,
-                anime: action.payload
+                cartAnime: action.payload
             };
-        case GET_ANIME_BY_SLUG:
+        case CLEAR_CART_ANIME:
             return {
                 ...state,
-                anime: action.payload
+                cartAnime: null
             };
         default:
             return state;
